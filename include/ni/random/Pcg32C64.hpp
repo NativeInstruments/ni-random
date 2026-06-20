@@ -1,0 +1,51 @@
+// clang-format off
+//
+// Copyright (c) 2026 Roth Michaels
+// Copyright (c) 2026 Native Instruments USA, Inc.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//
+// 1. Redistributions of source code must retain the above copyright notice,
+//    this list of conditions and the following disclaimer.
+//
+// 2. Redistributions in binary form must reproduce the above copyright notice,
+//    this list of conditions and the following disclaimer in the documentation
+//    and/or other materials provided with the distribution.
+//
+// 3. Neither the name of the copyright holder nor the names of its contributors
+//    may be used to endorse or promote products derived from this software
+//    without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
+//
+// clang-format on
+
+//! \file Pcg32C64.hpp
+//!
+//! Public per-engine header exposing the PCG `pcg32_c64` extended generator
+//! into ni::random — the c-variant extended XSH-RR 64/32 (kdd=false, intended
+//! to be harder to predict). The engine machinery and the Apache-2.0 OR MIT
+//! license notice live in detail/PcgEngine.hpp (imported verbatim from
+//! pcg-cpp). See plans/import-pcg-family.md.
+
+#pragma once
+#include "ni/random/RandomNumberEngine.hpp"
+#include "ni/random/detail/PcgEngine.hpp"
+
+namespace ni::random {
+//! PCG XSH-RR 64/32 extended, c-variant — upstream `pcg32_c64`.
+using Pcg32C64 = pcg_engines::ext_setseq_xsh_rr_64_32<6, 16, false>;
+} // namespace ni::random
+
+static_assert(ni::random::RandomNumberEngine<ni::random::Pcg32C64>);
