@@ -10,6 +10,11 @@ they are drop-in compatible with `<random>` — an `ni::random` engine drives a
 `std::` distribution, a `std::` engine drives an `ni::random` distribution, and
 the pieces mix freely.
 
+**N.B.: The initial release has only been built with Xcode 16.2 (Apple
+  clang 16.0.0 (clang-1600.0.26.6) and tested on macOS 15.7.7.  There is
+  some Winodows specific code that has not been built with MSVC or
+  tested on Windows yet.**
+
 ## Why this exists
 
 The standard library guarantees the *interface* of `<random>` but not the
