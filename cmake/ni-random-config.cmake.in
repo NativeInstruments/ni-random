@@ -1,0 +1,7 @@
+@PACKAGE_INIT@
+
+# ni-random is header-only and has no runtime dependencies, so the exported
+# target file is all that is needed.
+include("${CMAKE_CURRENT_LIST_DIR}/ni-random-targets.cmake")
+
+check_required_components(ni-random)

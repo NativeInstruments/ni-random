@@ -121,6 +121,31 @@ xcrun xctest out/Debug/ni-randomUnitTests.xctest   # macOS
 updated when adding or removing one. CI runs `build_scripts/ci.py`, which builds
 the test target with sanitizers enabled and runs style checks.
 
+### CMake (standalone)
+
+A standalone CMake build is also provided for use outside the monorepo. It needs
+only CMake ≥ 3.24 and a C++20 compiler — GoogleTest and Google Benchmark are
+fetched automatically via `FetchContent` (no izdeps / `iZCoreCommon`):
+
+```bash
+cmake -S . -B build -G Ninja            # add -DNI_RANDOM_BUILD_BENCHMARKS=ON for benchmarks
+cmake --build build
+ctest --test-dir build --output-on-failure
+```
+
+Options: `NI_RANDOM_BUILD_TESTS` (default ON when top-level),
+`NI_RANDOM_BUILD_BENCHMARKS` (default OFF), `NI_RANDOM_INSTALL` (default ON when
+top-level). Consume the installed/fetched library as the `ni-random::ni-random`
+INTERFACE target:
+
+```cmake
+find_package(ni-random REQUIRED)        # or FetchContent / add_subdirectory
+target_link_libraries(my_app PRIVATE ni-random::ni-random)
+```
+
+The GYP and CMake builds are independent and share the same sources; the GYP
+flow remains the build used inside the monorepo.
+
 ### Adding an engine
 
 1. Add `include/ni/random/<Engine>.hpp` ending in

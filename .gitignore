@@ -85,6 +85,12 @@ xcuserdata/
 # ninja build dir
 out
 
+# CMake build dirs
+/build/
+build-cmake/
+cmake-build-*/
+CMakeUserPresets.json
+
 # node modules for node
 node_modules/
 
