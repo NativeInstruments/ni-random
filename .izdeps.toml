@@ -1,9 +1,0 @@
-[[dependencies]]
-url = "git@github.com:native-instruments/FRAM-izbuildconfig.git"
-path = "../iZFrameworks/izbuildconfig"
-[[dependencies]]
-url = "git@github.com:native-instruments/FRAM-izcore.git"
-path = "../iZFrameworks/izcore"
-[[dependencies]]
-url = "git@github.com:native-instruments/IZ-google-testing.git"
-path = "../google-testing"
